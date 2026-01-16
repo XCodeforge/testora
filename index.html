@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Testora - Modern CBT Software for Schools</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#06b6d4",
+                        "accent": "#7c3aed",
+                        "background-light": "#f8fbff",
+                        "background-dark": "#0b0f12",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.75rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .soft-shadow {
+            box-shadow: 0 12px 40px rgba(2,6,23,0.06);
+        }
+        .dark .soft-shadow {
+            box-shadow: 0 18px 60px rgba(2,6,23,0.6);
+        }
+        .step-line::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            bottom: -40px;
+            width: 2px;
+            background: linear-gradient(180deg, rgba(6,182,212,0.25), rgba(124,58,237,0.25));
+        }
+        .dark .step-line::before {
+            background: linear-gradient(180deg, rgba(6,182,212,0.12), rgba(124,58,237,0.12));
+        }
+        .step-line-last::before {
+            display: none;
+        }
+
+        /* Brighter hero + glowing accent */
+        .hero-gradient {
+            background: radial-gradient(800px 400px at 10% 20%, rgba(124,58,237,0.12), transparent 15%),
+                        radial-gradient(600px 300px at 90% 80%, rgba(6,182,212,0.10), transparent 15%);
+        }
+
+        .glow-blob {
+            filter: blur(48px);
+            opacity: 0.95;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg,#06b6d4 0%, #7c3aed 100%);
+            box-shadow: 0 12px 30px rgba(124,58,237,0.18), 0 6px 14px rgba(6,182,212,0.08);
+            color: white;
+        }
+
+        .btn-primary:active { transform: translateY(1px) scale(0.998); }
+
+        .card-glass {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(8px) saturate(120%);
+            border: 1px solid rgba(255,255,255,0.45);
+        }
+        .dark .card-glass {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .float { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%{ transform: translateY(0px);}50%{ transform: translateY(-10px);}100%{ transform: translateY(0px);} }
+
+        .shimmer::after{
+            content: '';
+            position: absolute; inset: 0; pointer-events: none;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0) 100%);
+            transform: translateX(-120%);
+            animation: shimmer 2.5s linear infinite;
+        }
+        @keyframes shimmer{ 100%{ transform: translateX(120%);} }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#121517] dark:text-white transition-colors duration-300">
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-[#dce1e4] dark:border-white/10">
+<div class="max-w-[1200px] mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<h2 class="text-xl font-extrabold tracking-tight">Testora</h2>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#benefits">Benefits</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#how-it-works">How it works</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#gallery">Gallery</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#download">Download</a>
+</nav>
+<button class="bg-primary text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:brightness-110 transition-all">
+            Get Started
+        </button>
+</div>
+</header>
+<main>
+<section class="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="flex flex-col gap-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-[#72C183]/10 text-[#72C183] rounded-full w-fit">
+<span class="material-symbols-outlined text-sm">verified</span>
+<span class="text-xs font-bold uppercase tracking-wider">1-Month Free Trial</span>
+</div>
+<h1 class="text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight">
+                    Reshaping How Exams Are Conducted
+                </h1>
+<p class="text-lg text-[#667885] dark:text-gray-400 leading-relaxed max-w-[500px]">
+                    Experience a reliable, modern solution for Computer-Based Testing in schools. Professional tools for educators, seamless experience for students.
+                </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-white px-8 py-4 rounded-xl text-base font-bold flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                        Start Free Trial <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="bg-white dark:bg-white/5 border border-[#dce1e4] dark:border-white/10 px-8 py-4 rounded-xl text-base font-bold hover:bg-gray-50 dark:hover:bg-white/10 transition-all">
+                        Watch Demo
+                    </button>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -inset-4 bg-primary/5 rounded-[2rem] blur-3xl"></div>
+<div class="relative bg-white dark:bg-gray-800 p-2 rounded-2xl shadow-2xl border border-white/20">
+<div class="w-full aspect-[16/10] bg-center bg-cover rounded-xl" data-alt="Desktop application dashboard" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9-VA-rWcq1esscGtAWA5XnaOsL1fjgUWlQNocGBTrqc3pIobyFAkmkAcnjBuVCtkNHJaXGpEuM5KoEElMnD4bnuowW2Mhm9KZ7dSdgse2petg3PRWtOUyTf79UmlLpvsXdXBmdI76PFBUhx9DEvpH9jhTDh_qSzEVPVmDpmziR1lo_HaTFZ0SnR0W2LS6DhAlFfbqvqNRI07A_oxsmTBJFBBkDMHJuhXkgBFKprH1ZwBZV51pOeg4qmC1jBMj7SfjnzHnq5iPIWA");'>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-[#1c1f24] py-24" id="benefits">
+<div class="max-w-[1200px] mx-auto px-6">
+<div class="mb-16">
+<h2 class="text-4xl font-extrabold mb-4">What is Testora?</h2>
+<p class="text-lg text-[#667885] dark:text-gray-400 max-w-[720px]">
+                    Testora is a sophisticated CBT software designed for seamless offline and online examination management. Built to handle massive school cohorts with zero downtime.
+                </p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="p-8 rounded-xl bg-background-light dark:bg-background-dark border border-[#dce1e4] dark:border-white/5 soft-shadow">
+<div class="size-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-3xl">shield_person</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Security &amp; Integrity</h3>
+<p class="text-[#667885] dark:text-gray-400">Advanced proctoring, lockdown browser features, and encryption to ensure every exam is fair and honest.</p>
+</div>
+<div class="p-8 rounded-xl bg-background-light dark:bg-background-dark border border-[#dce1e4] dark:border-white/5 soft-shadow">
+<div class="size-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Instant Results</h3>
+<p class="text-[#667885] dark:text-gray-400">Automated grading systems provide immediate feedback to students and detailed analytics for teachers.</p>
+</div>
+<div class="p-8 rounded-xl bg-background-light dark:bg-background-dark border border-[#dce1e4] dark:border-white/5 soft-shadow">
+<div class="size-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-3xl">wifi_off</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Offline Excellence</h3>
+<p class="text-[#667885] dark:text-gray-400">Run exams smoothly on a local network without relying on constant internet connectivity. Sync when ready.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-background-light dark:bg-background-dark" id="how-it-works">
+<div class="max-w-[1200px] mx-auto px-6">
+<div class="text-center mb-20">
+<h2 class="text-4xl font-extrabold mb-4">How It Works</h2>
+<p class="text-lg text-[#667885] dark:text-gray-400">A comprehensive guide to onboarding your school with Testora.</p>
+</div>
+<div class="space-y-24">
+<div class="flex flex-col md:flex-row gap-12 items-center">
+<div class="flex-1 space-y-6 relative">
+<div class="step-line">
+<div class="flex items-center gap-4 mb-4">
+<div class="size-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg z-10 shadow-lg shadow-primary/20">1</div>
+<h3 class="text-2xl font-extrabold">Download &amp; Install</h3>
+</div>
+<div class="pl-14">
+<p class="text-lg text-[#667885] dark:text-gray-400 mb-6">
+                                    Get started by downloading the Testora installer for your server and client machines. Our lightweight application installs in minutes on any Windows-based system.
+                                </p>
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-sm font-semibold">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+                                        Available for x64 and x86 architectures
+                                    </li>
+<li class="flex items-center gap-3 text-sm font-semibold">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+                                        Single-click deployment
+                                    </li>
+</ul>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white dark:bg-gray-800 p-3 rounded-2xl shadow-xl border border-gray-100 dark:border-white/5">
+<div class="aspect-[16/10] bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-200 dark:border-gray-600">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl text-gray-400 mb-2">image</span>
+<p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Installation UI Screenshot</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row-reverse gap-12 items-center">
+<div class="flex-1 space-y-6 relative">
+<div class="step-line">
+<div class="flex items-center gap-4 mb-4">
+<div class="size-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg z-10 shadow-lg shadow-primary/20">2</div>
+<h3 class="text-2xl font-extrabold">Create School Account</h3>
+</div>
+<div class="pl-14">
+<p class="text-lg text-[#667885] dark:text-gray-400 mb-6">
+                                    Register your institution to centralize all exam data. Set up your school profile, branding, and academic sessions to tailor the experience to your needs.
+                                </p>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white dark:bg-gray-800 p-3 rounded-2xl shadow-xl border border-gray-100 dark:border-white/5">
+<div class="aspect-[16/10] bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-200 dark:border-gray-600">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl text-gray-400 mb-2">image</span>
+<p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Account Registration UI</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-12 items-center">
+<div class="flex-1 space-y-6 relative">
+<div class="step-line">
+<div class="flex items-center gap-4 mb-4">
+<div class="size-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg z-10 shadow-lg shadow-primary/20">3</div>
+<h3 class="text-2xl font-extrabold">Administrator Setup</h3>
+</div>
+<div class="pl-14">
+<p class="text-lg text-[#667885] dark:text-gray-400 mb-6">
+                                    Bulk import students and staff members using our intelligent CSV importer. Assign roles, departments, and classes with a few clicks.
+                                </p>
+<div class="flex gap-4">
+<div class="flex-1 bg-white dark:bg-white/5 p-4 rounded-lg border border-gray-100 dark:border-white/10">
+<div class="text-xs font-bold text-primary mb-1">Students</div>
+<div class="text-xl font-extrabold">1,200+</div>
+</div>
+<div class="flex-1 bg-white dark:bg-white/5 p-4 rounded-lg border border-gray-100 dark:border-white/10">
+<div class="text-xs font-bold text-primary mb-1">Staff</div>
+<div class="text-xl font-extrabold">45</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white dark:bg-gray-800 p-3 rounded-2xl shadow-xl border border-gray-100 dark:border-white/5">
+<div class="aspect-[16/10] bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-200 dark:border-gray-600">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl text-gray-400 mb-2">image</span>
+<p class="text-xs text-gray-400 font-bold uppercase tracking-widest">User Management Dashboard</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row-reverse gap-12 items-center">
+<div class="flex-1 space-y-6 relative">
+<div class="step-line">
+<div class="flex items-center gap-4 mb-4">
+<div class="size-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg z-10 shadow-lg shadow-primary/20">4</div>
+<h3 class="text-2xl font-extrabold">Session &amp; Exam Configuration</h3>
+</div>
+<div class="pl-14">
+<p class="text-lg text-[#667885] dark:text-gray-400 mb-6">
+                                    Define your testing environment. Set time limits, number of questions, shuffling rules, and enable security features like the Lockdown Browser.
+                                </p>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white dark:bg-gray-800 p-3 rounded-2xl shadow-xl border border-gray-100 dark:border-white/5">
+<div class="aspect-[16/10] bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-200 dark:border-gray-600">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl text-gray-400 mb-2">image</span>
+<p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Exam Builder Interface</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-12 items-center">
+<div class="flex-1 space-y-6 relative">
+<div class="step-line">
+<div class="flex items-center gap-4 mb-4">
+<div class="size-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg z-10 shadow-lg shadow-primary/20">5</div>
+<h3 class="text-2xl font-extrabold">Set Exams &amp; Passcodes</h3>
+</div>
+<div class="pl-14">
+<p class="text-lg text-[#667885] dark:text-gray-400 mb-6">
+                                    Publish your exams and generate secure passcodes. These unique identifiers ensure that only authorized students can access specific subjects at the scheduled time.
+                                </p>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white dark:bg-gray-800 p-3 rounded-2xl shadow-xl border border-gray-100 dark:border-white/5">
+<div class="aspect-[16/10] bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-200 dark:border-gray-600">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl text-gray-400 mb-2">key</span>
+<p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Passcode Generation Screen</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row-reverse gap-12 items-center">
+<div class="flex-1 space-y-6 relative">
+<div class="step-line step-line-last">
+<div class="flex items-center gap-4 mb-4">
+<div class="size-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg z-10 shadow-lg shadow-primary/20">6</div>
+<h3 class="text-2xl font-extrabold">Students Take Exams</h3>
+</div>
+<div class="pl-14">
+<p class="text-lg text-[#667885] dark:text-gray-400 mb-6">
+                                    Students log in, enter their passcode, and begin testing. Administrators can monitor real-time progress and connectivity status from the central dashboard.
+                                </p>
+<div class="inline-flex items-center gap-2 text-green-500 font-bold">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</span>
+                                    Live Monitoring Active
+                                </div>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white dark:bg-gray-800 p-3 rounded-2xl shadow-xl border border-gray-100 dark:border-white/5">
+<div class="aspect-[16/10] bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-200 dark:border-gray-600">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl text-gray-400 mb-2">image</span>
+<p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Student Testing Interface</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-[#121517] text-white py-24" id="gallery">
+<div class="max-w-[1200px] mx-auto px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+<div>
+<h2 class="text-4xl font-extrabold mb-4">Product Showcase</h2>
+<p class="text-gray-400 text-lg max-w-[500px]">Powerful management for administrators. Focused interface for students.</p>
+</div>
+<div class="flex gap-2">
+<button class="size-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="size-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="group cursor-pointer">
+<div class="rounded-2xl overflow-hidden mb-6 bg-gray-900 border border-white/10">
+<div class="aspect-[16/10] bg-center bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Detailed admin analytics dashboard" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCR4lEXRXsN0X4ZGwETvP5t_MOdniJcZNmI9mKkNinDgYhOyAOzEsyWgBNo0psxug2iwSJ6WUOJNqXpPqT5CaArj46kErlgzrPkQU_Y2AmhvAJi_Ui5UDHl4gN79NRTbLefmR0LAI2lWRZ0QsVQhVmnF0gZFaJNihSDZoNxgJH5CBXvV-QN8GFpUaUkefzii52AG_U_HYhlfCe0xtLvJ3WFGeSupDdtP_oDwFTXripziY18h-WnMVifoh1et43EAudgUZ6TPXSE8z0");'></div>
+</div>
+<h3 class="text-xl font-bold mb-2">Admin Dashboard</h3>
+<p class="text-gray-400">Complete control over exams, student registration, and real-time grading metrics.</p>
+</div>
+<div class="group cursor-pointer">
+<div class="rounded-2xl overflow-hidden mb-6 bg-gray-900 border border-white/10">
+<div class="aspect-[16/10] bg-center bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Clean student testing interface" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAfyiAk4F9vD-53lUUBEnsv-KMFRhaN95HV4Xl9o4RzS0zNAMZoZQ1NPb5RKXw_4AED4zQgUy5QaXkyOvAJlevre3Vy9WU5Nz3nBG-HgqTzZnVSabGaKJM70LVZPI098pmRRt-DZJCNjmwmNoND-UZoik16YaWJt2sDEPW9EMzGNtsGD5rMKXR2YzqW6HpvkRDcz2Zk_RzA_1mlPnCqdDD-STWwFKx6-T8lvHdDwDDD29eDQBt3wN8uD7BJkwMhlmVAUmO77xw1TVc");'></div>
+</div>
+<h3 class="text-xl font-bold mb-2">Student Portal</h3>
+<p class="text-gray-400">Minimalist interface designed to reduce exam anxiety and maintain focus.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24" id="download">
+<div class="max-w-[1000px] mx-auto px-6">
+<div class="bg-primary rounded-[2rem] p-12 md:p-20 text-center text-white relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+<path d="M0 0 L100 0 L100 100 L0 100 Z" fill="url(#grid)"></path>
+<defs>
+<pattern height="10" id="grid" patternUnits="userSpaceOnUse" width="10">
+<path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5"></path>
+</pattern>
+</defs>
+</svg>
+</div>
+<div class="relative z-10">
+<h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">Ready to Modernize Your Exams?</h2>
+<p class="text-lg text-white/80 mb-12 max-w-[600px] mx-auto">
+                        Download Testora for Windows. Choose the version compatible with your school's computer lab hardware.
+                    </p>
+<div class="flex flex-col sm:flex-row justify-center gap-4 max-w-[600px] mx-auto">
+<button class="bg-white text-primary px-8 py-5 rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-gray-100 transition-all flex-1">
+<span class="material-symbols-outlined">download</span>
+<div class="text-left">
+<div class="text-sm opacity-70">Download for Windows</div>
+<div class="text-lg">x64 (64-bit)</div>
+</div>
+</button>
+<button class="bg-white/10 text-white border border-white/20 px-8 py-5 rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-white/20 transition-all flex-1">
+<span class="material-symbols-outlined">download</span>
+<div class="text-left">
+<div class="text-sm opacity-70">Download for Windows</div>
+<div class="text-lg">x86 (32-bit)</div>
+</div>
+</button>
+</div>
+<p class="mt-8 text-sm text-white/60">Version 2.4.0 • Requirements: Windows 7 or higher, 2GB RAM</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-white dark:bg-[#1c1f24] border-t border-[#dce1e4] dark:border-white/10 pt-20 pb-10">
+<div class="max-w-[1200px] mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-20">
+<div class="col-span-2 lg:col-span-2">
+<div class="flex items-center gap-2 mb-6">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<h2 class="text-xl font-extrabold tracking-tight">Testora</h2>
+</div>
+<p class="text-[#667885] dark:text-gray-400 mb-8 max-w-[300px]">
+                    The leading Computer-Based Testing solution for schools looking to secure their academic future.
+                </p>
+<div class="flex gap-4">
+<a class="size-10 rounded-full border border-[#dce1e4] dark:border-white/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-xl">language</span></a>
+<a class="size-10 rounded-full border border-[#dce1e4] dark:border-white/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-xl">mail</span></a>
+<a class="size-10 rounded-full border border-[#dce1e4] dark:border-white/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-xl">call</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-bold mb-6">Product</h4>
+<ul class="flex flex-col gap-4 text-[#667885] dark:text-gray-400 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Features</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Documentation</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Updates</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Company</h4>
+<ul class="flex flex-col gap-4 text-[#667885] dark:text-gray-400 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Success Stories</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Support</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Legal</h4>
+<ul class="flex flex-col gap-4 text-[#667885] dark:text-gray-400 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Cookie Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-[#dce1e4] dark:border-white/10 pt-10">
+<p class="text-sm text-[#667885] dark:text-gray-400">© 2024 Testora Systems Inc. All rights reserved.</p>
+<div class="flex items-center gap-2">
+<span class="size-2 bg-[#72C183] rounded-full animate-pulse"></span>
+<p class="text-sm font-medium">All systems operational</p>
+</div>
+</div>
+</div>
+</footer>
+
+</body></html>
